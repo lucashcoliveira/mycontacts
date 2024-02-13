@@ -35,7 +35,23 @@ class CategoryController {
     const { id } = request.params;
     const { name } = request.body
 
-    const nameExistis = await CategoriesRepository.findAll()
+    const categoryExists = await CategoriesRepository.findById(id)
+    if (!categoryExists) {
+      return response.status(404).json({ error: 'User not found' });
+    }
+
+    if (!name) {
+      return response.status(400).json({ error: 'Name is required' });
+    }
+
+    const catetgoryByName = await CategoriesRepository.findByName(name);
+    if (catetgoryByName && catetgoryByName.id !== id){
+      return response.status(400).json({ Error: 'This category already exists'});
+    }
+
+    const category = await CategoriesRepository.update(id, { name })
+
+    response.json(category)
   }
 
   async delete(request, response){
