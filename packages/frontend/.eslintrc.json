@@ -1,20 +1,26 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
-    },
-
-    "extends": "airbnb",
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-
-    "rules": {
-      "react/jsx-filename-extension": [1, {"extensions": [".js", ".jsx"]}],
-      "react/react-in-jsx-scope": "off",
-      "import/prefer-default-export": "off",
-      "no-unused-vars": "off",
-      "react/jsx-no-bind": "off"
-    }
+  "env": {
+      "browser": true,
+      "es2021": true
+  },
+  "extends": [
+    "plugin:react-hooks/recommended",
+    "airbnb"
+  ],
+  "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+  },
+  "plugins": [
+    "react-hooks"
+  ],
+  "rules": {
+    "react/jsx-filename-extension": [1, {"extensions": [".js", ".jsx"]}],
+    "react/react-in-jsx-scope": "off",
+    "import/prefer-default-export": "off",
+    "no-unused-vars": "off",
+    "react/jsx-no-bind": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
+  }
 }

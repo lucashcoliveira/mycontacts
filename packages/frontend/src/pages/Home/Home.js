@@ -1,16 +1,12 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState, useMemo } from 'react';
-
-import {
-  Card, Container, Header, ListHeader, InputSerachContainer,
-} from './styles';
-
+import { Card, Container, Header, ListHeader, InputSerachContainer } from './styles';
 import arrow from '../../assets/images/icons/arrow.svg';
 import edit from '../../assets/images/icons/edit.svg';
 import trash from '../../assets/images/icons/trash.svg';
-import Modal from '../../components/Modal';
 import Loader from '../../components/Loader';
 import delay from '../../utils/delay';
+
 
 export default function Home() {
   const [contacts, setContacts] = useState([]);
@@ -45,7 +41,7 @@ export default function Home() {
 
   function handleToggleOrderBy() {
     setOrderBy(
-      (prevState) => (prevState === 'asc' ? 'desc' : 'asc'),
+      (prevState) => (prevState === 'asc' ? 'desc' : 'asc')
     );
   }
 
@@ -62,8 +58,7 @@ export default function Home() {
           value={searchTerm}
           type="text"
           placeholder="Pesquisar contato"
-          onChange={handleChangeSearchTerm}
-        />
+          onChange={handleChangeSearchTerm} />
       </InputSerachContainer>
 
       <Header>
