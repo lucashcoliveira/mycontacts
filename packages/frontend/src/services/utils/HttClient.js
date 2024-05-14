@@ -6,10 +6,15 @@ class HttpClient {
   }
 
   async get(patch) {
-    const response = await fetch(`${this.baseURL}${patch}`);
     await delay(1000);
 
-    return response.json();
+    const response = await fetch(`${this.baseURL}${patch}`);
+
+    if (response.ok) {
+      return response.json();
+    }
+
+    throw new Error(`${response.status} - ${response.statusText}`);
   }
 }
 

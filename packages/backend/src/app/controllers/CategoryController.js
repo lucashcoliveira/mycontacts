@@ -7,18 +7,6 @@ class CategoryController {
     response.json(categories);
   }
 
-  async store(request, response) {
-    const { name } = request.body;
-
-    if (!name) {
-      return response.status(400).json({ error: 'Name is required' });
-    }
-
-    const category = await CategoriesRepository.create({ name });
-
-    response.json(category);
-  }
-
   async show(request, response) {
     const { id } = request.params;
 
@@ -29,6 +17,18 @@ class CategoryController {
     }
 
     response.json(category);
+  }
+
+  async store(request, response) {
+    const { name } = request.body;
+
+    if (!name) {
+      return response.status(400).json({ error: 'Name is required' });
+    }
+
+    const category = await CategoriesRepository.create({ name });
+
+    response.status(201).json(category);
   }
 
   async update(request, response) {
