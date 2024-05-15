@@ -10,11 +10,20 @@ class HttpClient {
 
     const response = await fetch(`${this.baseURL}${patch}`);
 
-    if (response.ok) {
-      return response.json();
+    let body = null;
+    const contentType = response.headers.get('content-type');
+
+    if (contentType.includes('application/json')) {
+      body = await response.json();
     }
 
-    throw new Error(`${response.status} - ${response.statusText}`);
+    if (response.ok) {
+      return body;
+    }
+
+    throw new Error(
+      body?.error || `${response.status} - ${response.statusText}`,
+    );
   }
 }
 
