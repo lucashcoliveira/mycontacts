@@ -9,7 +9,7 @@ class ContactsService {
     return this.HttClient.get(`/contacts/?orderBy=${orderBy}`);
   }
 
-  async ceateContact(contact) {
+  async createContact(contact) {
     return this.HttClient.post('/contacts', contact);
   }
 }

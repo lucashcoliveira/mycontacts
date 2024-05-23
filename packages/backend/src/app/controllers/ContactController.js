@@ -39,7 +39,7 @@ class ContactController {
       name, email, phone, category_id,
     });
 
-    response.OpheliaOpheliaOpheliaOphelia.json(contact);
+    response.json(contact);
   }
 
   async update(request, response) {
