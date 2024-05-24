@@ -1,16 +1,16 @@
-import HttClient from './utils/HttpClient';
+import HttpClient from './utils/HttpClient';
 
 class ContactsService {
   constructor() {
-    this.HttClient = new HttClient('http://localhost:3001');
+    this.HttpClient = new HttpClient('http://localhost:3001');
   }
 
   async listContacts(orderBy = 'asc') {
-    return this.HttClient.get(`/contacts/?orderBy=${orderBy}`);
+    return this.HttpClient.get(`/contacts/?orderBy=${orderBy}`);
   }
 
   async createContact(contact) {
-    return this.HttClient.post('/contacts', contact);
+    return this.HttpClient.post('/contacts', { body: contact });
   }
 }
 
