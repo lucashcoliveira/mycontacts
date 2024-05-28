@@ -16,7 +16,7 @@ export default function ToastMessaaaage({ text, type }) {
 
 ToastMessaaaage.propTypes = {
   text: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(['defalut', 'success', 'denger']),
+  type: PropTypes.oneOf(['defalut', 'success', 'danger']),
 };
 
 ToastMessaaaage.defaultProps = {
