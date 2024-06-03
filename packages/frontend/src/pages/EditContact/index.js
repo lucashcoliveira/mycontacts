@@ -1,5 +1,5 @@
 import { useParams, useHistory } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import PageHeader from '../../components/PageHeader';
 import ContactForm from '../../components/ContactForm';
@@ -10,16 +10,19 @@ import ContactsService from '../../services/ContactsService';
 
 export default function EditContact() {
   const [isLoading, setIsLoading] = useState(true);
+  const contactFormRef = useRef(null);
+
   const history = useHistory();
   const { id } = useParams();
 
   useEffect(() => {
     async function loaadContact() {
       try {
-        const contactData = await ContactsService.getContactById(
+        const contact = await ContactsService.getContactById(
           id,
         );
-        console.log({ contactData });
+
+        contactFormRef.current.setFiledValues(contact);
         setIsLoading(false);
       } catch {
         history.push('/');
@@ -43,6 +46,7 @@ export default function EditContact() {
       />
 
       <ContactForm
+        ref={contactFormRef}
         buttonLabel="Salvar Alterações "
         onSubmit={handleSubmit}
       />
