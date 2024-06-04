@@ -21,6 +21,14 @@ class HttpClient {
     });
   }
 
+  put(patch, options) {
+    return this.makeResquest(patch, {
+      method: 'PUT',
+      body: options?.body,
+      headers: options?.headers,
+    });
+  }
+
   async makeResquest(patch, options) {
     await delay(500);
 
