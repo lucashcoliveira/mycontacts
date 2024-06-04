@@ -54,7 +54,6 @@ export default function Home() {
   return (
     <Container>
       <Loader isLoading={isLoading} />
-      {/* <Modal danger /> */}
       <InputSerachContainer>
         <input
           value={searchTerm}
