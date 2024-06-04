@@ -10,6 +10,7 @@ import ContactsService from '../../services/ContactsService';
 
 export default function EditContact() {
   const [isLoading, setIsLoading] = useState(true);
+  const [contactName, setContactName] = useState('');
   const contactFormRef = useRef(null);
 
   const history = useHistory();
@@ -24,6 +25,7 @@ export default function EditContact() {
 
         contactFormRef.current.setFiledValues(contact);
         setIsLoading(false);
+        setContactName(contact.name);
       } catch {
         history.push('/');
         toast({
@@ -42,7 +44,7 @@ export default function EditContact() {
     <>
       <Loader isLoading={isLoading} />
       <PageHeader
-        title="Editar Lucas Henrique"
+        title={isLoading ? 'Carregando...' : `Editar ${contactName}`}
       />
 
       <ContactForm
