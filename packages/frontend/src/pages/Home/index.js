@@ -25,6 +25,7 @@ import magnifierQuestion from '../../assets/images/icons/magnifier-question.svg'
 
 import Loader from '../../components/Loader';
 import Button from '../../components/Button';
+import Modal from '../../components/Modal';
 
 import ContactsService from '../../services/ContactsService';
 
@@ -76,6 +77,16 @@ export default function Home() {
   return (
     <Container>
       <Loader isLoading={isLoading} />
+
+      <Modal
+        danger
+        title="Tem certeza que deseja remover o contato ”Mateus Silva”?"
+        confirmLabel="Deletar"
+        onCancel={() => { alert('Cancelou'); }}
+        onConfirm={() => { alert('Confirmou'); }}
+      >
+        <h2>asdasdasd</h2>
+      </Modal>
       {contacts.length > 0 && (
         <InputSerachContainer>
           <input
@@ -88,7 +99,7 @@ export default function Home() {
       )}
 
       <Header
-        justifyContent={(
+        justifycontent={(
           hasError
             ? 'flex-end'
             : (

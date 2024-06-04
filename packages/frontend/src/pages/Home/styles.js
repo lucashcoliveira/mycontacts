@@ -27,7 +27,7 @@ export const InputSerachContainer = styled.div`
 export const Header = styled.header`
   display: flex;
   align-items: center;
-  justify-content: ${({ justifyContent }) => justifyContent};
+  justify-content: ${({ justifycontent }) => justifycontent};
   margin-top: 32px;
   border-bottom: 2px solid ${({ theme }) => theme.colors.gray[100]};
   padding-bottom: 16px;
