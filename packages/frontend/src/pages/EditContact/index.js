@@ -7,21 +7,20 @@ import Loader from '../../components/Loader';
 import toast from '../../utils/toast';
 
 import ContactsService from '../../services/ContactsService';
+import useSafeAsyncState from '../../hooks/useSafeAsyncState';
 
 export default function EditContact() {
   const [isLoading, setIsLoading] = useState(true);
-  const [contactName, setContactName] = useState('');
+  const [contactName, setContactName] = useSafeAsyncState('');
   const contactFormRef = useRef(null);
 
   const history = useHistory();
   const { id } = useParams();
 
   useEffect(() => {
-    async function loaadContact() {
+    async function loadContact() {
       try {
-        const contact = await ContactsService.getContactById(
-          id,
-        );
+        const contact = await ContactsService.getContactById(id);
 
         contactFormRef.current.setFiledValues(contact);
         setIsLoading(false);
@@ -34,8 +33,8 @@ export default function EditContact() {
         });
       }
     }
-    loaadContact();
-  }, [id, history]);
+    loadContact();
+  }, [id, history, setContactName]);
 
   async function handleSubmit(formData) {
     try {
@@ -74,7 +73,6 @@ export default function EditContact() {
         buttonLabel="Salvar Alterações "
         onSubmit={handleSubmit}
       />
-
     </>
   );
 }

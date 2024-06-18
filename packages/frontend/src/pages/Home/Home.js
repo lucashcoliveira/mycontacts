@@ -9,12 +9,13 @@ import trash from '../../assets/images/icons/trash.svg';
 
 import Loader from '../../components/Loader';
 import delay from '../../utils/delay';
+import useSafeAsyncState from '../../hooks/useSafeAsyncState';
 
 export default function Home() {
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useSafeAsyncState([]);
   const [orderBy, setOrderBy] = useState('asc');
   const [searchTerm, setSearchTerm] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useSafeAsyncState(true);
 
   const filteredContacts = useMemo(() => contacts.filter((contact) => (
     contact.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -39,7 +40,7 @@ export default function Home() {
     }
 
     loadContacts();
-  }, [orderBy]);
+  }, [orderBy, setContacts, setIsLoading]);
 
   function handleToggleOrderBy() {
     setOrderBy(

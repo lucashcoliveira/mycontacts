@@ -14,14 +14,15 @@ import FormGroup from '../FormGroup';
 import Input from '../Input';
 import Select from '../Select';
 import Button from '../Button';
+import useSafeAsyncState from '../../hooks/useSafeAsyncState';
 
 const ContactForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [categoryId, setCategoryId] = useState('');
-  const [categories, setCategories] = useState([]);
-  const [isLoadingCategories, setIsLoadingCategories] = useState(true);
+  const [categories, setCategories] = useSafeAsyncState([]);
+  const [isLoadingCategories, setIsLoadingCategories] = useSafeAsyncState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {
@@ -58,8 +59,9 @@ const ContactForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
         setIsLoadingCategories(false);
       }
     }
+
     loadCategories();
-  }, []);
+  }, [setCategories, setIsLoadingCategories]);
 
   function handlNameChange(event) {
     setName(event.target.value);
