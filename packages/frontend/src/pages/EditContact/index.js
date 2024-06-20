@@ -8,6 +8,7 @@ import toast from '../../utils/toast';
 
 import ContactsService from '../../services/ContactsService';
 import useIsMounted from '../../hooks/useIsMounted';
+import ContactMapper from '../../services/mappers/ContactMapper';
 
 export default function EditContact() {
   const [isLoading, setIsLoading] = useState(true);
@@ -41,15 +42,8 @@ export default function EditContact() {
     loadContact();
   }, [id, history, isMounted]);
 
-  async function handleSubmit(formData) {
+  async function handleSubmit(contact) {
     try {
-      const contact = {
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        category_id: formData.categoryId,
-      };
-
       const contactData = await ContactsService.updateContact(id, contact);
 
       setContactName(contactData.name);
