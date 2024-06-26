@@ -8,7 +8,6 @@ import toast from '../../utils/toast';
 
 import ContactsService from '../../services/ContactsService';
 import useIsMounted from '../../hooks/useIsMounted';
-import ContactMapper from '../../services/mappers/ContactMapper';
 
 export default function EditContact() {
   const [isLoading, setIsLoading] = useState(true);

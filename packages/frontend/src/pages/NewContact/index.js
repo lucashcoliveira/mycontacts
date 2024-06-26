@@ -3,7 +3,6 @@ import PageHeader from '../../components/PageHeader';
 import ContactForm from '../../components/ContactForm';
 import ContactsService from '../../services/ContactsService';
 import toast from '../../utils/toast';
-import ContactMapper from '../../services/mappers/ContactMapper';
 
 export default function NewContact() {
   const contactFormRef = useRef(null);
