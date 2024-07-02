@@ -63,7 +63,7 @@ class ContactController {
     } = request.body;
 
     if (!isValidUUID(id)) {
-      return response.status(400).json({ error: 'Invalid ccontact id' });
+      return response.status(400).json({ error: 'Invalid contact id' });
     }
 
     if (category_id && !isValidUUID(category_id)) {
