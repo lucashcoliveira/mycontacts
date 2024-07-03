@@ -7,7 +7,6 @@ import {
   Container,
   Header,
   ListHeader,
-  InputSerachContainer,
   ErrorContainer,
   EmptyListContainer,
   SearchNotFoundContainer,
@@ -23,7 +22,11 @@ import magnifierQuestion from '../../assets/images/icons/magnifier-question.svg'
 import Loader from '../../components/Loader';
 import Button from '../../components/Button';
 import Modal from '../../components/Modal';
+
 import useHome from './useHome';
+import InputSearch from './components/InputSearch';
+
+// import InputSearch from './components/InputSearch';
 
 export default function Home() {
   const {
@@ -48,26 +51,11 @@ export default function Home() {
     <Container>
       <Loader isLoading={isLoading} />
 
-      <Modal
-        danger
-        isLoading={isLoadingDelete}
-        visible={isDeleteModalVisible}
-        title={`Tem certeza que deseja remover o contato "${contactBeingDeleted?.name}"?`}
-        confirmLabel="Deletar"
-        onCancel={handleCloseDeleteModal}
-        onConfirm={handleConfirmDeleteContact}
-      >
-        <p>esta ação não podera ser desfeita!</p>
-      </Modal>
       {contacts.length > 0 && (
-        <InputSerachContainer>
-          <input
-            value={searchTerm}
-            type="text"
-            placeholder="Pesquisar contato"
-            onChange={handleChangeSearchTerm}
-          />
-        </InputSerachContainer>
+        <InputSearch
+          value={searchTerm}
+          onChange={handleChangeSearchTerm}
+        />
       )}
 
       <Header
@@ -162,6 +150,18 @@ export default function Home() {
               </div>
             </Card>
           ))}
+
+          <Modal
+            danger
+            isLoading={isLoadingDelete}
+            visible={isDeleteModalVisible}
+            title={`Tem certeza que deseja remover o contato "${contactBeingDeleted?.name}"?`}
+            confirmLabel="Deletar"
+            onCancel={handleCloseDeleteModal}
+            onConfirm={handleConfirmDeleteContact}
+          >
+            <p>esta ação não podera ser desfeita!</p>
+          </Modal>
         </>
       )}
     </Container>
