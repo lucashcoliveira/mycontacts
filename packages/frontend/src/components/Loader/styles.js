@@ -10,4 +10,5 @@ export const Overlay = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
 `;
